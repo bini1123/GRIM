@@ -1,0 +1,89 @@
+//양꼬치
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, int k) {
+    int price_lamb = n * 12000;
+    int service_drinks = n / 10;          
+    int price_drinks = (k - service_drinks) * 2000;
+    int answer = price_lamb + price_drinks;
+    
+    return answer;
+}
+
+//이차원배열
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<vector<int>> board, int k) {
+    int sum = 0;
+    int rows = board.size();
+    int cols = board[0].size();
+    
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (i + j <= k) {
+                sum += board[i][j];
+            }
+        }
+    }
+    return sum;
+}
+
+//직사각형 넓이 구하기
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(vector<vector<int>> dots) {
+    int min_x = dots[0][0];
+    int max_x = dots[0][0];
+    int min_y = dots[0][1];
+    int max_y = dots[0][1];
+    
+    for (int i = 1; i < 4; i++) {
+        min_x = min(min_x, dots[i][0]);
+        max_x = max(max_x, dots[i][0]);
+        min_y = min(min_y, dots[i][1]);
+        max_y = max(max_y, dots[i][1]);
+    }
+    
+    int width = max_x - min_x;
+    int height = max_y - min_y;
+
+    return width * height;
+}
+
+//빈 배열에 추가, 삭제하기
+#include <string>
+#include <vector>
+
+using namespace std;
+
+vector<int> solution(vector<int> arr, vector<bool> flag) {
+    vector<int> X;
+    int n = arr.size();
+
+    for (int i = 0; i < n; i++) {
+        if (flag[i]) {
+            
+            int count = arr[i] * 2;
+            for (int j = 0; j < count; j++) {
+                X.push_back(arr[i]);
+            }
+        } else {
+            
+            for (int j = 0; j < arr[i]; j++) {
+                X.pop_back();
+            }
+        }
+    }
+
+    return X;
+}
